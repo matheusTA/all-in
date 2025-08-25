@@ -1,40 +1,40 @@
-import { StyleSheet } from "react-native-unistyles";
+import { StyleSheet } from 'react-native-unistyles';
 
 const zincColorsPalette = {
-  50: "#fafafa",
-  100: "#f4f4f5",
-  200: "#e4e4e7",
-  300: "#d4d4d8",
-  400: "#a1a1aa",
-  500: "#71717a",
-  600: "#52525b",
-  700: "#3f3f46",
-  800: "#27272a",
-  900: "#18181b",
-  950: "#09090b",
+  50: '#fafafa',
+  100: '#f4f4f5',
+  200: '#e4e4e7',
+  300: '#d4d4d8',
+  400: '#a1a1aa',
+  500: '#71717a',
+  600: '#52525b',
+  700: '#3f3f46',
+  800: '#27272a',
+  900: '#18181b',
+  950: '#09090b',
 } as const;
 
 const greenColorsPalette = {
-  50: "#c1ffd5",
-  100: "#5bffa1",
-  200: "#00e381",
-  300: "#00c16d",
-  400: "#00a35b",
-  500: "#00864a",
-  600: "#006a39",
-  700: "#004f29",
-  800: "#00361a",
-  900: "#00210e",
-  950: "#001507",
+  50: '#c1ffd5',
+  100: '#5bffa1',
+  200: '#00e381',
+  300: '#00c16d',
+  400: '#00a35b',
+  500: '#00864a',
+  600: '#006a39',
+  700: '#004f29',
+  800: '#00361a',
+  900: '#00210e',
+  950: '#001507',
 } as const;
 
 const defaultTheme = {
   colors: {
-    black: "#000000",
-    white: "#ffffff",
+    black: '#000000',
+    white: '#ffffff',
 
-    destructive: "#f87171",
-    destructiveForeground: "#fafafa",
+    destructive: '#f87171',
+    destructiveForeground: '#fafafa',
 
     zinc: zincColorsPalette,
     green: greenColorsPalette,
@@ -91,7 +91,7 @@ export const breakpoints = {
 
 StyleSheet.configure({
   settings: {
-    initialTheme: "default",
+    initialTheme: 'default',
   },
   themes: appThemes,
   breakpoints,

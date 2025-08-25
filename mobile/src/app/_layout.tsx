@@ -1,6 +1,6 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-import { StyleSheet } from "react-native-unistyles";
+import { StatusBar } from 'expo-status-bar';
+import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 export default function Layout() {
   return (
@@ -15,8 +15,8 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.primary,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     color: theme.colors.primaryForeground,
