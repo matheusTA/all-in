@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native-unistyles';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Button } from '../components/ui/button';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -43,6 +44,13 @@ export default function Layout() {
     <>
       <SafeAreaView style={styles.container}>
         <Text style={styles.text}>unistyles configured.</Text>
+        <Button.Root style={styles.button} label="Entrar" size="small" onPress={() => {}} />
+        <Button.Root label="Entrar" onPress={() => {}} />
+        <Button.Root label="Entrar" size="large" onPress={() => {}} />
+        <Button.Root label="Entrar" onPress={() => {}} />
+        <Button.Root label="Entrar" variant="secundary" onPress={() => {}} />
+        <Button.Root label="Entrar" variant="outline" onPress={() => {}} />
+        <Button.Root label="Entrar" variant="destructive" onPress={() => {}} />
         <StatusBar backgroundColor="#000000" style="light" />
       </SafeAreaView>
     </>
@@ -52,11 +60,15 @@ export default function Layout() {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.primary,
+    gap: 4,
+    backgroundColor: theme.colors.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
     color: theme.colors.primaryForeground,
+  },
+  button: {
+    width: '100%',
   },
 }));

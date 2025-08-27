@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "All in",
+    "slug": "all-in",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.mobile"
+      "bundleIdentifier": "com.allin.mobile"
     },
     "android": {
       "adaptiveIcon": {
@@ -16,7 +16,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.mobile"
+      "package": "com.allin.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"

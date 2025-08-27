@@ -1,4 +1,4 @@
-package com.anonymous.mobile
+package com.allin.mobile
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

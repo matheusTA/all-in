@@ -74,6 +74,14 @@ const defaultTheme = {
     // Destaque de foco (inputs, botões ao receber foco)
     ring: zincColorsPalette[500],
   },
+  rounded: {
+    xs: 2,
+    sm: 4,
+    md: 6,
+    lg: 8,
+    xl: 12,
+    full: 9999,
+  },
   gap: (v: number) => v * 8,
 } as const;
 
