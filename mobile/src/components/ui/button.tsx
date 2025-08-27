@@ -1,31 +1,52 @@
-import { StyleProp, Text, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
+import { createContext, ReactNode, useContext } from 'react';
+import { StyleProp, Text, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
 import { StyleSheet, UnistylesVariants } from 'react-native-unistyles';
 
 type Variants = UnistylesVariants<typeof styles>;
 
+interface ButtonLabelProps {
+  style?: StyleProp<TextStyle>;
+  children: ReactNode;
+}
+
 interface ButtonProps extends TouchableOpacityProps {
-  label: string;
   variant?: Variants['variant'];
   size?: Variants['size'];
   style?: StyleProp<ViewStyle>;
+  children: ReactNode;
 }
 
-function ButtonRoot({ label, variant, size, style, ...props }: ButtonProps) {
+const ButtonContext = createContext<Variants>({});
+
+function ButtonLabel({ style, children }: ButtonLabelProps) {
+  const { variant, size } = useContext(ButtonContext);
   styles.useVariants({ variant, size });
 
   return (
-    <TouchableOpacity activeOpacity={0.5} style={[styles.buttonRoot, style]} {...props}>
-      <Text numberOfLines={1} style={styles.buttonLabel}>
-        {label}
-      </Text>
-    </TouchableOpacity>
+    <Text numberOfLines={1} style={[styles.buttonLabel, style]}>
+      {children}
+    </Text>
+  );
+}
+
+function ButtonRoot({ variant, size, style, children, ...props }: ButtonProps) {
+  styles.useVariants({ variant, size });
+
+  return (
+    <ButtonContext.Provider value={{ variant, size }}>
+      <TouchableOpacity activeOpacity={0.5} style={[styles.buttonRoot, style]} {...props}>
+        {children}
+      </TouchableOpacity>
+    </ButtonContext.Provider>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
   buttonRoot: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 2,
     borderRadius: theme.rounded.md,
 
     variants: {
@@ -98,4 +119,5 @@ const styles = StyleSheet.create((theme) => ({
 
 export const Button = {
   Root: ButtonRoot,
+  Label: ButtonLabel,
 };
