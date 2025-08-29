@@ -82,7 +82,23 @@ const defaultTheme = {
     xl: 12,
     full: 9999,
   },
+  fontSize: {
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 30,
+    '4xl': 36,
+    '5xl': 48,
+    '6xl': 60,
+    '7xl': 72,
+    '8xl': 96,
+    '9xl': 120,
+  },
   gap: (v: number) => v * 8,
+  size: (value: number) => parseInt((value * 4).toFixed(0), 10),
 } as const;
 
 export const appThemes = {

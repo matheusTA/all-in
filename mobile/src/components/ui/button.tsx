@@ -116,7 +116,7 @@ const styles = StyleSheet.create((theme) => ({
   }),
   label: {
     flexShrink: 0,
-    fontSize: 12,
+    fontSize: theme.fontSize.sm,
     fontWeight: 'medium',
 
     variants: {
@@ -136,18 +136,12 @@ const styles = StyleSheet.create((theme) => ({
         ghost: {},
       },
       size: {
-        default: {
-          fontSize: 12,
-        },
-        small: {
-          fontSize: 10,
-        },
+        default: {},
+        small: {},
         large: {
-          fontSize: 14,
+          fontSize: theme.fontSize.md,
         },
-        icon: {
-          fontSize: 12,
-        },
+        icon: {},
       },
     },
   },
