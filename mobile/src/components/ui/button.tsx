@@ -1,40 +1,62 @@
 import { createContext, ReactNode, useContext } from 'react';
-import { StyleProp, Text, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle } from 'react-native';
+import {
+  StyleProp,
+  Text,
+  TextProps,
+  TextStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle,
+} from 'react-native';
 import { StyleSheet, UnistylesVariants } from 'react-native-unistyles';
 
-type Variants = UnistylesVariants<typeof styles>;
-
-interface ButtonLabelProps {
+interface ButtonLabelProps extends TextProps {
   style?: StyleProp<TextStyle>;
   children: ReactNode;
 }
 
-interface ButtonProps extends TouchableOpacityProps {
-  variant?: Variants['variant'];
-  size?: Variants['size'];
-  style?: StyleProp<ViewStyle>;
-  children: ReactNode;
-}
-
-const ButtonContext = createContext<Variants>({});
-
-function ButtonLabel({ style, children }: ButtonLabelProps) {
+function ButtonLabel({ style, children, ...props }: ButtonLabelProps) {
   const { variant, size } = useContext(ButtonContext);
   styles.useVariants({ variant, size });
 
   return (
-    <Text numberOfLines={1} style={[styles.buttonLabel, style]}>
+    <Text numberOfLines={1} style={[styles.label, style]} {...props}>
       {children}
     </Text>
   );
 }
 
-function ButtonRoot({ variant, size, style, children, ...props }: ButtonProps) {
+type Variants = UnistylesVariants<typeof styles>;
+
+interface ButtonRootProps extends TouchableOpacityProps {
+  variant?: Variants['variant'];
+  size?: Variants['size'];
+  fullWidth?: boolean;
+  style?: StyleProp<ViewStyle>;
+  children: ReactNode;
+}
+
+const ButtonContext = createContext<Variants>({} as Variants);
+
+function ButtonRoot({
+  variant,
+  size,
+  fullWidth = false,
+  disabled = false,
+  style,
+  children,
+  ...props
+}: ButtonRootProps) {
   styles.useVariants({ variant, size });
 
   return (
     <ButtonContext.Provider value={{ variant, size }}>
-      <TouchableOpacity activeOpacity={0.5} style={[styles.buttonRoot, style]} {...props}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        disabled={disabled}
+        style={[styles.root(fullWidth, disabled), style]}
+        {...props}
+      >
         {children}
       </TouchableOpacity>
     </ButtonContext.Provider>
@@ -42,12 +64,14 @@ function ButtonRoot({ variant, size, style, children, ...props }: ButtonProps) {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  buttonRoot: {
+  root: (fullWidth: boolean, disabled: boolean) => ({
+    width: fullWidth ? '100%' : 'auto',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 2,
     borderRadius: theme.rounded.md,
+    opacity: disabled ? 0.5 : 1,
 
     variants: {
       variant: {
@@ -65,11 +89,15 @@ const styles = StyleSheet.create((theme) => ({
         destructive: {
           backgroundColor: theme.colors.destructive,
         },
+        ghost: {
+          backgroundColor: 'transparent',
+        },
       },
       size: {
         default: {
           height: 40,
           paddingHorizontal: 16,
+          paddingVertical: 8,
         },
         small: {
           height: 36,
@@ -77,12 +105,16 @@ const styles = StyleSheet.create((theme) => ({
         },
         large: {
           height: 44,
-          paddingHorizontal: 20,
+          paddingHorizontal: 32,
+        },
+        icon: {
+          height: 24,
+          width: 24,
         },
       },
     },
-  },
-  buttonLabel: {
+  }),
+  label: {
     flexShrink: 0,
     fontSize: 12,
     fontWeight: 'medium',
@@ -101,6 +133,7 @@ const styles = StyleSheet.create((theme) => ({
         destructive: {
           color: theme.colors.destructiveForeground,
         },
+        ghost: {},
       },
       size: {
         default: {
@@ -111,6 +144,9 @@ const styles = StyleSheet.create((theme) => ({
         },
         large: {
           fontSize: 14,
+        },
+        icon: {
+          fontSize: 12,
         },
       },
     },

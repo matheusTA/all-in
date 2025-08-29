@@ -44,11 +44,11 @@ export default function Layout() {
     <>
       <SafeAreaView style={styles.container}>
         <Text style={styles.text}>unistyles configured.</Text>
-        <Button.Root style={styles.button} size="small" onPress={() => {}}>
+        <Button.Root fullWidth size="small" onPress={() => {}}>
           <Text>💥</Text>
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
-        <Button.Root onPress={() => {}}>
+        <Button.Root disabled onPress={() => {}}>
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
         <Button.Root size="large" onPress={() => {}}>
@@ -57,14 +57,20 @@ export default function Layout() {
         <Button.Root onPress={() => {}}>
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
-        <Button.Root variant="secundary" onPress={() => {}}>
+        <Button.Root disabled variant="secundary" onPress={() => {}}>
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
-        <Button.Root variant="outline" onPress={() => {}}>
+        <Button.Root disabled variant="outline" onPress={() => {}}>
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
-        <Button.Root variant="destructive" onPress={() => {}}>
+        <Button.Root disabled variant="destructive" onPress={() => {}}>
           <Button.Label>Entrar</Button.Label>
+        </Button.Root>
+        <Button.Root disabled variant="secundary" size="icon" onPress={() => {}}>
+          <Button.Label>💥</Button.Label>
+        </Button.Root>
+        <Button.Root disabled variant="ghost" size="icon" onPress={() => {}}>
+          <Button.Label>💥</Button.Label>
         </Button.Root>
         <StatusBar backgroundColor="#000000" style="light" />
       </SafeAreaView>
@@ -86,5 +92,6 @@ const styles = StyleSheet.create((theme) => ({
   },
   button: {
     width: '100%',
+    justifyContent: 'space-between',
   },
 }));
