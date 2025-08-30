@@ -1,0 +1,46 @@
+import { SvgProps } from 'react-native-svg';
+import EyeIcon from '../../../assets/icons/eye.svg';
+import EyeCloseIcon from '../../../assets/icons/eye-close.svg';
+import DollarIcon from '../../../assets/icons/dollar.svg';
+import AtSignIcon from '../../../assets/icons/at-sign.svg';
+import LockIcon from '../../../assets/icons/lock.svg';
+import BellIcon from '../../../assets/icons/bell.svg';
+import PlusIcon from '../../../assets/icons/plus.svg';
+import ArrowUpDownIcon from '../../../assets/icons/arrow-up-down.svg';
+import ChevronsRightIcon from '../../../assets/icons/chevrons-right.svg';
+import MinusIcon from '../../../assets/icons/minus.svg';
+import ClubIcon from '../../../assets/icons/club.svg';
+import SpadeIcon from '../../../assets/icons/spade.svg';
+
+const icons = {
+  eye: EyeIcon,
+  eyeClose: EyeCloseIcon,
+  dollar: DollarIcon,
+  atSign: AtSignIcon,
+  lock: LockIcon,
+  bell: BellIcon,
+  plus: PlusIcon,
+  arrowUpDown: ArrowUpDownIcon,
+  chevronsRight: ChevronsRightIcon,
+  minus: MinusIcon,
+  club: ClubIcon,
+  spade: SpadeIcon,
+};
+
+export type IconName = keyof typeof icons;
+
+interface IconProps extends SvgProps {
+  name: IconName;
+  size?: number;
+  color?: string;
+}
+
+export function Icon({ name, size = 16, color, ...props }: IconProps) {
+  const Component = icons[name];
+
+  if (!Component) {
+    throw new Error(`Icon ${name} not found`);
+  }
+
+  return <Component height={size} width={size} color={color} {...props} />;
+}

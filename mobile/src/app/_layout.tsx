@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../components/ui/button';
+import { Icon } from '../components/ui/icon';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,7 +46,7 @@ export default function Layout() {
       <SafeAreaView style={styles.container}>
         <Text style={styles.text}>unistyles configured.</Text>
         <Button.Root fullWidth size="small" onPress={() => {}}>
-          <Text>💥</Text>
+          <Icon name="eye" size={16} color="#fff" />
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
         <Button.Root disabled onPress={() => {}}>
@@ -66,11 +67,11 @@ export default function Layout() {
         <Button.Root disabled variant="destructive" onPress={() => {}}>
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
-        <Button.Root disabled variant="secundary" size="icon" onPress={() => {}}>
-          <Button.Label>💥</Button.Label>
+        <Button.Root variant="secundary" size="icon" onPress={() => {}}>
+          <Icon name="spade" size={16} color="#fff" />
         </Button.Root>
-        <Button.Root disabled variant="ghost" size="icon" onPress={() => {}}>
-          <Button.Label>💥</Button.Label>
+        <Button.Root variant="ghost" size="icon" onPress={() => {}}>
+          <Icon name="atSign" size={16} color="#fff" />
         </Button.Root>
         <StatusBar backgroundColor="#000000" style="light" />
       </SafeAreaView>
