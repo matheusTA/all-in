@@ -1,14 +1,22 @@
 import { createContext, ReactNode, useContext } from 'react';
-import { StyleProp, Text, TextProps, TextStyle, Pressable, PressableProps, ViewStyle } from 'react-native';
+import {
+  StyleProp,
+  Text,
+  TextProps,
+  TextStyle,
+  Pressable as RNPressable,
+  PressableProps as RNPressableProps,
+  ViewStyle,
+} from 'react-native';
 import { StyleSheet, UnistylesVariants } from 'react-native-unistyles';
 
-interface ButtonLabelProps extends TextProps {
+interface PressableLabelProps extends TextProps {
   style?: StyleProp<TextStyle>;
   children: ReactNode;
 }
 
-function ButtonLabel({ style, children, ...props }: ButtonLabelProps) {
-  const { variant, size } = useContext(ButtonContext);
+function PressableLabel({ style, children, ...props }: PressableLabelProps) {
+  const { variant, size } = useContext(PressableContext);
   styles.useVariants({ variant, size });
 
   return (
@@ -20,7 +28,7 @@ function ButtonLabel({ style, children, ...props }: ButtonLabelProps) {
 
 type Variants = UnistylesVariants<typeof styles>;
 
-interface ButtonRootProps extends PressableProps {
+export interface PressableRootProps extends RNPressableProps {
   variant?: Variants['variant'];
   size?: Variants['size'];
   fullWidth?: boolean;
@@ -28,9 +36,9 @@ interface ButtonRootProps extends PressableProps {
   children: ReactNode;
 }
 
-const ButtonContext = createContext<Variants>({} as Variants);
+const PressableContext = createContext<Variants>({} as Variants);
 
-function ButtonRoot({
+function PressableRoot({
   variant,
   size,
   fullWidth = false,
@@ -38,19 +46,19 @@ function ButtonRoot({
   style,
   children,
   ...props
-}: ButtonRootProps) {
+}: PressableRootProps) {
   styles.useVariants({ variant, size });
 
   return (
-    <ButtonContext.Provider value={{ variant, size }}>
-      <Pressable
+    <PressableContext.Provider value={{ variant, size }}>
+      <RNPressable
         disabled={disabled}
         style={({ pressed }) => [styles.root(pressed, fullWidth, disabled), style]}
         {...props}
       >
         {children}
-      </Pressable>
-    </ButtonContext.Provider>
+      </RNPressable>
+    </PressableContext.Provider>
   );
 }
 
@@ -138,7 +146,7 @@ const styles = StyleSheet.create((theme) => ({
   },
 }));
 
-export const Button = {
-  Root: ButtonRoot,
-  Label: ButtonLabel,
+export const Pressable = {
+  Root: PressableRoot,
+  Label: PressableLabel,
 };
