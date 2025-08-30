@@ -45,34 +45,12 @@ export default function Layout() {
     <>
       <SafeAreaView style={styles.container}>
         <Text style={styles.text}>unistyles configured.</Text>
-        <Button.Root fullWidth size="small" onPress={() => {}}>
+
+        <Button.Root fullWidth size="small" onPress={() => console.log('pressed')}>
           <Icon name="eye" size={16} color="#fff" />
           <Button.Label>Entrar</Button.Label>
         </Button.Root>
-        <Button.Root disabled onPress={() => {}}>
-          <Button.Label>Entrar</Button.Label>
-        </Button.Root>
-        <Button.Root size="large" onPress={() => {}}>
-          <Button.Label>Entrar</Button.Label>
-        </Button.Root>
-        <Button.Root onPress={() => {}}>
-          <Button.Label>Entrar</Button.Label>
-        </Button.Root>
-        <Button.Root disabled variant="secundary" onPress={() => {}}>
-          <Button.Label>Entrar</Button.Label>
-        </Button.Root>
-        <Button.Root disabled variant="outline" onPress={() => {}}>
-          <Button.Label>Entrar</Button.Label>
-        </Button.Root>
-        <Button.Root disabled variant="destructive" onPress={() => {}}>
-          <Button.Label>Entrar</Button.Label>
-        </Button.Root>
-        <Button.Root variant="secundary" size="icon" onPress={() => {}}>
-          <Icon name="spade" size={16} color="#fff" />
-        </Button.Root>
-        <Button.Root variant="ghost" size="icon" onPress={() => {}}>
-          <Icon name="atSign" size={16} color="#fff" />
-        </Button.Root>
+
         <StatusBar backgroundColor="#000000" style="light" />
       </SafeAreaView>
     </>

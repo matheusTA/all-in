@@ -1,13 +1,5 @@
 import { createContext, ReactNode, useContext } from 'react';
-import {
-  StyleProp,
-  Text,
-  TextProps,
-  TextStyle,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  ViewStyle,
-} from 'react-native';
+import { StyleProp, Text, TextProps, TextStyle, Pressable, PressableProps, ViewStyle } from 'react-native';
 import { StyleSheet, UnistylesVariants } from 'react-native-unistyles';
 
 interface ButtonLabelProps extends TextProps {
@@ -28,7 +20,7 @@ function ButtonLabel({ style, children, ...props }: ButtonLabelProps) {
 
 type Variants = UnistylesVariants<typeof styles>;
 
-interface ButtonRootProps extends TouchableOpacityProps {
+interface ButtonRootProps extends PressableProps {
   variant?: Variants['variant'];
   size?: Variants['size'];
   fullWidth?: boolean;
@@ -51,27 +43,26 @@ function ButtonRoot({
 
   return (
     <ButtonContext.Provider value={{ variant, size }}>
-      <TouchableOpacity
-        activeOpacity={0.5}
+      <Pressable
         disabled={disabled}
-        style={[styles.root(fullWidth, disabled), style]}
+        style={({ pressed }) => [styles.root(pressed, fullWidth, disabled), style]}
         {...props}
       >
         {children}
-      </TouchableOpacity>
+      </Pressable>
     </ButtonContext.Provider>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
-  root: (fullWidth: boolean, disabled: boolean) => ({
+  root: (pressed: boolean, fullWidth: boolean, disabled: boolean | null) => ({
     width: fullWidth ? '100%' : 'auto',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 2,
     borderRadius: theme.rounded.md,
-    opacity: disabled ? 0.5 : 1,
+    opacity: disabled ? 0.5 : pressed ? 0.8 : 1,
 
     variants: {
       variant: {
