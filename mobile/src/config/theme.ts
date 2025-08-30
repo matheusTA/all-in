@@ -36,8 +36,29 @@ export const defaultTheme = {
     destructive: '#f87171',
     destructiveForeground: '#fafafa',
 
-    zinc: zincColorsPalette,
-    green: greenColorsPalette,
+    zinc50: zincColorsPalette[50],
+    zinc100: zincColorsPalette[100],
+    zinc200: zincColorsPalette[200],
+    zinc300: zincColorsPalette[300],
+    zinc400: zincColorsPalette[400],
+    zinc500: zincColorsPalette[500],
+    zinc600: zincColorsPalette[600],
+    zinc700: zincColorsPalette[700],
+    zinc800: zincColorsPalette[800],
+    zinc900: zincColorsPalette[900],
+    zinc950: zincColorsPalette[950],
+
+    green50: greenColorsPalette[50],
+    green100: greenColorsPalette[100],
+    green200: greenColorsPalette[200],
+    green300: greenColorsPalette[300],
+    green400: greenColorsPalette[400],
+    green500: greenColorsPalette[500],
+    green600: greenColorsPalette[600],
+    green700: greenColorsPalette[700],
+    green800: greenColorsPalette[800],
+    green900: greenColorsPalette[900],
+    green950: greenColorsPalette[950],
 
     // Base - fundo principal e cor do texto padrão
     background: zincColorsPalette[950],
@@ -73,6 +94,10 @@ export const defaultTheme = {
 
     // Destaque de foco (inputs, botões ao receber foco)
     ring: zincColorsPalette[500],
+
+    // Cores específicas para inputs
+    inputIcon: zincColorsPalette[400], // Cor padrão para ícones de input
+    inputPlaceholder: zincColorsPalette[400], // Cor padrão para placeholder
   },
   rounded: {
     xs: 2,
@@ -100,6 +125,8 @@ export const defaultTheme = {
   gap: (v: number) => v * 8,
   size: (value: number) => parseInt((value * 4).toFixed(0), 10),
 } as const;
+
+export type ThemeColors = keyof typeof defaultTheme.colors;
 
 export const appThemes = {
   default: defaultTheme,
