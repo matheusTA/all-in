@@ -1,5 +1,6 @@
 import { SvgProps } from 'react-native-svg';
 import { useUnistyles } from 'react-native-unistyles';
+import { ThemeColors } from '../../config/theme';
 import EyeIcon from '../../../assets/icons/eye.svg';
 import EyeCloseIcon from '../../../assets/icons/eye-close.svg';
 import DollarIcon from '../../../assets/icons/dollar.svg';
@@ -12,7 +13,7 @@ import ChevronsRightIcon from '../../../assets/icons/chevrons-right.svg';
 import MinusIcon from '../../../assets/icons/minus.svg';
 import ClubIcon from '../../../assets/icons/club.svg';
 import SpadeIcon from '../../../assets/icons/spade.svg';
-import { ThemeColors } from '../../config/theme';
+import GoogleIcon from '../../../assets/icons/google.svg';
 
 const icons = {
   eye: EyeIcon,
@@ -27,6 +28,7 @@ const icons = {
   minus: MinusIcon,
   club: ClubIcon,
   spade: SpadeIcon,
+  google: GoogleIcon,
 };
 
 export type IconName = keyof typeof icons;
@@ -39,7 +41,7 @@ interface IconProps extends SvgProps {
 
 export function Icon({ name, size = 16, color, ...props }: IconProps) {
   const { theme } = useUnistyles();
-  const iconColor = color ? theme.colors[color] : '#000';
+  const iconColor = color ? theme.colors[color] : undefined;
   const Component = icons[name];
 
   if (!Component) {
