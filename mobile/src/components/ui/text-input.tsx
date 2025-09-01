@@ -44,7 +44,7 @@ const styles = StyleSheet.create((theme) => ({
           height: 36,
         },
         large: {
-          height: 44,
+          height: 52,
         },
       },
     },
